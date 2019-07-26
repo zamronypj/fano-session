@@ -29,7 +29,13 @@ uses
     (*! -------------------------------
      *   controllers factory
      *----------------------------------- *)
-    {---- put your controller factory here ---};
+    {---- put your controller factory here ---},
+    HomeControllerFactory,
+    HomeViewFactory,
+    HelloControllerFactory,
+    HelloViewFactory,
+    SignInControllerFactory,
+    SignInViewFactory;
 
 
     procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);

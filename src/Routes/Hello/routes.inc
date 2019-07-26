@@ -6,10 +6,4 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-{%dependencies.inc}
-
-{---put your dependencies registration here---}
-
-container.add('homeView', THomeViewFactory.create());
-container.add('helloView', THelloViewFactory.create());
-container.add('signinView', TSignInViewFactory.create());
+router.get('/hello', container.get('helloController') as IRouteHandler);
