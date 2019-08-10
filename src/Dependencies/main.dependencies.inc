@@ -16,3 +16,4 @@
  ------------------------------------------------}
  container.factory('routeMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
 
+ container.factory('session', TJsonFileSessionManagerFactory.create());
