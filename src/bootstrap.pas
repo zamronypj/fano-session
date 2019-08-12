@@ -32,10 +32,10 @@ uses
     {---- put your controller factory here ---},
     HomeControllerFactory,
     HomeViewFactory,
-    HelloControllerFactory,
-    HelloViewFactory,
     SignInControllerFactory,
-    SignInViewFactory;
+    SignInViewFactory,
+    AuthControllerFactory,
+    AuthOnlyMiddlewareFactory;
 
 
     procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);
