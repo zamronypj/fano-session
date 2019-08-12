@@ -16,5 +16,5 @@
  ------------------------------------------------}
  container.factory('routeMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
 
- container.factory(GuidToString(ISession), TJsonFileSessionManagerFactory.create());
- container.alias('session', GuidToString(ISession));
+ container.factory(GuidToString(ISessionManager), TJsonFileSessionManagerFactory.create());
+ container.alias('session', GuidToString(ISessionManager));

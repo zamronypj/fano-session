@@ -23,14 +23,14 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TAuthController = class(TRouteHandler)
+    TAuthController = class(TRouteHandler, IDependency)
     private
-        fSession : ISession;
+        fSession : ISessionManager;
     public
         constructor create(
             const beforeMiddlewares : IMiddlewareCollection;
             const afterMiddlewares : IMiddlewareCollection;
-            const session : ISession
+            const session : ISessionManager
         );
 
         destructor destroy(); override;
@@ -46,7 +46,7 @@ implementation
     constructor TAuthController.create(
         const beforeMiddlewares : IMiddlewareCollection;
         const afterMiddlewares : IMiddlewareCollection;
-        const session : ISession
+        const session : ISessionManager
     );
     begin
         inherited create(beforeMiddlewares, afterMiddlewares);
@@ -64,20 +64,23 @@ implementation
           const response : IResponse
     ) : IResponse;
     var username, password : string;
+        sess : ISession;
     begin
+        sess := fSession.beginSession(request, 3600);
         username := request.getParsedBodyParam('username');
         password := request.getParsedBodyParam('password');
         if (username = 'hello') and (password = 'world') then
         begin
-            fSession.setVar('userSignedIn', 'true');
+            sess.setVar('userSignedIn', 'true');
         end else
         begin
-            fSession.delete('userSignedIn');
+            sess.delete('userSignedIn');
         end;
         result := TRedirectResponse.create(
             response.headers(),
             'http://fano-session.zamroni/'
         );
+        fSession.endSession(sess);
     end;
 
 end.

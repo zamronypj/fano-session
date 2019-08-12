@@ -42,7 +42,7 @@ uses
             result := TAuthController.create(
                 routeMiddlewares.getBefore(),
                 routeMiddlewares.getAfter(),
-                container.get(GuidToString(ISession)) as ISession
+                container.get(GuidToString(ISessionManager)) as ISessionManager
             );
         finally
             routeMiddlewares := nil;

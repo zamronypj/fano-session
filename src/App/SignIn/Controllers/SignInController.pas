@@ -23,7 +23,7 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TSignInController = class(TController)
+    TSignInController = class(TController, IDependency)
     end;
 
 implementation

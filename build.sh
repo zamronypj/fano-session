@@ -29,7 +29,7 @@ if [[ -z "${UNIT_OUTPUT_DIR}" ]]; then
 fi
 
 if [[ -z "${EXEC_OUTPUT_DIR}" ]]; then
-export EXEC_OUTPUT_DIR="public"
+export EXEC_OUTPUT_DIR="bin"
 fi
 
 if [[ -z "${EXEC_OUTPUT_NAME}" ]]; then

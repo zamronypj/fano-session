@@ -42,7 +42,7 @@ uses
             result := TSignInController.create(
                 routeMiddlewares.getBefore(),
                 routeMiddlewares.getAfter(),
-                container.get('signInView') as IView,
+                container.get('signinView') as IView,
                 container.get('viewParams') as IViewParameters
             );
         finally

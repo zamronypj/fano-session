@@ -23,10 +23,10 @@ type
      *-------------------------------------------------*)
     TAuthOnlyMiddleware = class(TInterfacedObject, IMiddleware, IDependency)
     private
-        fSession : ISession;
+        fSession : ISessionManager;
         fTargetUrlRedirect : string;
     public
-        constructor create(const session : ISession; const redirectUrl : string);
+        constructor create(const session : ISessionManager; const redirectUrl : string);
         destructor destroy(); override;
 
         function handleRequest(
@@ -38,7 +38,7 @@ type
 
 implementation
 
-    constructor TAuthOnlyMiddleware.create(const session : ISession; const redirectUrl : string);
+    constructor TAuthOnlyMiddleware.create(const session : ISessionManager; const redirectUrl : string);
     begin
         inherited create();
         fSession := session;
@@ -56,8 +56,10 @@ implementation
           const response : IResponse;
           var canContinue : boolean
     ) : IResponse;
+    var sess : ISession;
     begin
-        canContinue := fSession.has('userSignedIn');
+        sess := fSession.beginSession(request, 3600);
+        canContinue := sess.has('userSignedIn');
         if (canContinue) then
         begin
             result := response;

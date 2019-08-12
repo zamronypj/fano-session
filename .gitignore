@@ -19,6 +19,7 @@ public/.htaccess
 #----------------------------------------------
 # Ignore generated binary executable
 #----------------------------------------------
+bin/app.cgi
 public/app.cgi
 cgi-bin/app.cgi
 
@@ -73,4 +74,3 @@ fp.ini
 # Ignore Visual Studio Code generated files
 #----------------------------------------------
 .vscode/
-

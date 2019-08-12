@@ -40,7 +40,7 @@ uses
     function THomeViewFactory.build(const container : IDependencyContainer) : IDependency;
     begin
         result := TTemplateView.create(
-            'resources/Templates/SignIn/index.html',
+            'resources/Templates/Home/index.html',
             TSimpleTemplateParser.create('{{', '}}'),
             TStringFileReader.create()
         );

@@ -23,7 +23,7 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    THomeController = class(TController)
+    THomeController = class(TController, IDependency)
     public
     end;
 

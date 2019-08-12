@@ -6,4 +6,7 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-router.get('/', container.get('homeController') as IRouteHandler);
+router.get(
+    '/',
+    container.get('homeController') as IRouteHandler
+).addBefore(container.get('authOnlyMiddleware') as IMiddleware);
