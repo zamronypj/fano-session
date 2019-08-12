@@ -31,15 +31,18 @@ implementation
 
 uses
 
-    SysUtils,
+    SysUtils
 
     {*! -------------------------------
         unit interfaces
-    ----------------------------------- *}
-    HomeView;
+    ----------------------------------- *};
 
     function THomeViewFactory.build(const container : IDependencyContainer) : IDependency;
     begin
-        result := THomeView.create();
+        result := TTemplateView.create(
+            'resources/Templates/SignIn/index.html',
+            TSimpleTemplateParser.create('{{', '}}'),
+            TStringFileReader.create()
+        );
     end;
 end.

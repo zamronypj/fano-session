@@ -31,15 +31,18 @@ implementation
 
 uses
 
-    SysUtils,
+    SysUtils
 
     {*! -------------------------------
         unit interfaces
-    ----------------------------------- *}
-    SignInView;
+    ----------------------------------- *};
 
     function TSignInViewFactory.build(const container : IDependencyContainer) : IDependency;
     begin
-        result := TSignInView.create();
+        result := TTemplateView.create(
+            'resources/Templates/SignIn/index.html',
+            TSimpleTemplateParser.create('{{', '}}'),
+            TStringFileReader.create()
+        );
     end;
 end.

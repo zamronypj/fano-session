@@ -42,7 +42,7 @@ implementation
     begin
         inherited create();
         fSession := session;
-        fTargetUrlRedirect : redirectUrl;
+        fTargetUrlRedirect := redirectUrl;
     end;
 
     destructor TAuthOnlyMiddleware.destroy();

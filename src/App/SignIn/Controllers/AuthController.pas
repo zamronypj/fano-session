@@ -24,7 +24,17 @@ type
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
     TAuthController = class(TRouteHandler)
+    private
+        fSession : ISession;
     public
+        constructor create(
+            const beforeMiddlewares : IMiddlewareCollection;
+            const afterMiddlewares : IMiddlewareCollection;
+            const session : ISession
+        );
+
+        destructor destroy(); override;
+
         function handleRequest(
             const request : IRequest;
             const response : IResponse
@@ -32,6 +42,22 @@ type
     end;
 
 implementation
+
+    constructor TAuthController.create(
+        const beforeMiddlewares : IMiddlewareCollection;
+        const afterMiddlewares : IMiddlewareCollection;
+        const session : ISession
+    );
+    begin
+        inherited create(beforeMiddlewares, afterMiddlewares);
+        fSession := session;
+    end;
+
+    destructor TAuthController.destroy();
+    begin
+        fSession := nil;
+        inherited destroy();
+    end;
 
     function TAuthController.handleRequest(
           const request : IRequest;

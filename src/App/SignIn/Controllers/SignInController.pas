@@ -23,24 +23,9 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TSignInController = class(TRouteHandler, IDependency)
-    public
-        function handleRequest(
-            const request : IRequest;
-            const response : IResponse
-        ) : IResponse; override;
+    TSignInController = class(TController)
     end;
 
 implementation
-
-    function TSignInController.handleRequest(
-          const request : IRequest;
-          const response : IResponse
-    ) : IResponse;
-    begin
-        {---put your code here---}
-        //response.body().write('nice');
-        result := response;
-    end;
 
 end.

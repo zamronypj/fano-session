@@ -11,6 +11,5 @@
 {---put your dependencies registration here---}
 
 container.add('homeController', THomeControllerFactory.create());
-container.add('helloController', THelloControllerFactory.create());
 container.add('signinController', TSignInControllerFactory.create());
 container.add('authController', TAuthControllerFactory.create());

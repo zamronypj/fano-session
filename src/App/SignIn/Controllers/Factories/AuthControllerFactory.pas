@@ -41,7 +41,8 @@ uses
         try
             result := TAuthController.create(
                 routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter()
+                routeMiddlewares.getAfter(),
+                container.get(GuidToString(ISession)) as ISession
             );
         finally
             routeMiddlewares := nil;
