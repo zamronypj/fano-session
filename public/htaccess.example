@@ -1,4 +1,3 @@
-DirectoryIndex app.cgi
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
