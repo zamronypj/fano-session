@@ -41,7 +41,9 @@ uses
         try
             result := THelloController.create(
                 routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter()
+                routeMiddlewares.getAfter(),
+                container.get('helloView') as IView,
+                container.get('viewParams') as IViewParameters
             );
         finally
             routeMiddlewares := nil;

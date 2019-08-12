@@ -5,7 +5,7 @@
  * @copyright Copyright (c) [[COPYRIGHT_YEAR]] [[COPYRIGHT_HOLDER]]
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
-unit SignInControllerFactory;
+unit AuthControllerFactory;
 
 interface
 
@@ -19,7 +19,7 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TSignInControllerFactory = class(TFactory, IDependencyFactory)
+    TAuthControllerFactory = class(TFactory, IDependencyFactory)
     public
         function build(const container : IDependencyContainer) : IDependency; override;
     end;
@@ -32,18 +32,16 @@ uses
     {*! -------------------------------
         unit interfaces
     ----------------------------------- *}
-    SignInController;
+    AuthController;
 
-    function TSignInControllerFactory.build(const container : IDependencyContainer) : IDependency;
+    function TAuthControllerFactory.build(const container : IDependencyContainer) : IDependency;
     var routeMiddlewares : IMiddlewareCollectionAware;
     begin
         routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
         try
-            result := TSignInController.create(
+            result := TAuthController.create(
                 routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter(),
-                container.get('signInView') as IView,
-                container.get('viewParams') as IViewParameters
+                routeMiddlewares.getAfter()
             );
         finally
             routeMiddlewares := nil;

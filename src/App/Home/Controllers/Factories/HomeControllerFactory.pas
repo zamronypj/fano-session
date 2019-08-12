@@ -41,7 +41,9 @@ uses
         try
             result := THomeController.create(
                 routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter()
+                routeMiddlewares.getAfter(),
+                container.get('homeView') as IView,
+                container.get('viewParams') as IViewParams
             );
         finally
             routeMiddlewares := nil;

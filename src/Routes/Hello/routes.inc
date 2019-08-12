@@ -6,4 +6,9 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-router.get('/hello', container.get('helloController') as IRouteHandler);
+//protect hello controller so that
+//only signed in user can access it otherwise it will redirect to sign in page
+router.get(
+    '/hello',
+    container.get('helloController') as IRouteHandler
+).addBefore(container.get('authOnlyMiddleware') as IMiddleware);

@@ -41,6 +41,8 @@
 #----------------------------------------------
 -Fu$USER_APP_DIR$/Dependencies
 -Fu$USER_APP_DIR$/Routes
+-Fu$USER_APP_DIR$/Middlewares
+-Fu$USER_APP_DIR$/Middlewares/Factories
 -Fu$USER_APP_DIR$/App/Home/Controllers
 -Fu$USER_APP_DIR$/App/Home/Controllers/Factories
 -Fu$USER_APP_DIR$/App/Home/Views
@@ -53,10 +55,6 @@
 -Fu$USER_APP_DIR$/App/SignIn/Controllers/Factories
 -Fu$USER_APP_DIR$/App/SignIn/Views
 -Fu$USER_APP_DIR$/App/SignIn/Views/Factories
-
-
-
-
 
 
 #-Fu$USER_APP_DIR$/path/to/other/units

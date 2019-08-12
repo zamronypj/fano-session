@@ -7,3 +7,4 @@
  *------------------------------------------------------------- *)
 
 router.get('/signin', container.get('signinController') as IRouteHandler);
+router.post('/signin', container.get('authController') as IRouteHandler);

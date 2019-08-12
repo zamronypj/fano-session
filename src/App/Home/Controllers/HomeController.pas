@@ -23,24 +23,11 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    THomeController = class(TRouteHandler, IDependency)
+    THomeController = class(TController)
     public
-        function handleRequest(
-            const request : IRequest;
-            const response : IResponse
-        ) : IResponse; override;
     end;
 
 implementation
 
-    function THomeController.handleRequest(
-          const request : IRequest;
-          const response : IResponse
-    ) : IResponse;
-    begin
-        {---put your code here---}
-        //response.body().write('nice');
-        result := response;
-    end;
 
 end.
