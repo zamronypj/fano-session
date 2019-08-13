@@ -14,7 +14,22 @@
    Replace with TMiddlewareCollectionAwareFactory to support middleware
    or replace with your own implementation if required
  ------------------------------------------------}
- container.factory('routeMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
+container.factory('appMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
+container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
- container.factory(GuidToString(ISessionManager), TJsonFileSessionManagerFactory.create());
- container.alias('session', GuidToString(ISessionManager));
+container.factory(
+    GuidToString(IDispatcher),
+    TDispatcherFactory.create(
+        container.get('appMiddlewares') as IMiddlewareCollectionAware,
+        container.get(GuidToString(IRouteMatcher)) as IRouteMatcher
+    )
+);
+
+container.factory(GuidToString(ISessionManager),
+    TJsonFileSessionManagerFactory.create(
+        'fano_sess',
+        'storages/sessions'
+    )
+);
+
+container.alias('session', GuidToString(ISessionManager));
