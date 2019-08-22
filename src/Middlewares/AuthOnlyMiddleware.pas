@@ -62,11 +62,9 @@ implementation
         canContinue := sess.has('userSignedIn');
         if (canContinue) then
         begin
-            writeln('can continue');
             result := response;
         end else
         begin
-            writeln('cannot continue');
             result := TRedirectResponse.create(
                 response.headers(),
                 fTargetUrlRedirect
