@@ -28,8 +28,7 @@ type
         fSession : ISessionManager;
     public
         constructor create(
-            const beforeMiddlewares : IMiddlewareCollection;
-            const afterMiddlewares : IMiddlewareCollection;
+            const aMiddlewares : IMiddlewareCollectionAware;
             const session : ISessionManager
         );
 
@@ -44,12 +43,11 @@ type
 implementation
 
     constructor TAuthController.create(
-        const beforeMiddlewares : IMiddlewareCollection;
-        const afterMiddlewares : IMiddlewareCollection;
+        const aMiddlewares : IMiddlewareCollectionAware;
         const session : ISessionManager
     );
     begin
-        inherited create(beforeMiddlewares, afterMiddlewares);
+        inherited create(aMiddlewares);
         fSession := session;
     end;
 

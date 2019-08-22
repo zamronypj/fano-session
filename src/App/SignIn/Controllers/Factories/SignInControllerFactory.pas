@@ -40,8 +40,7 @@ uses
         routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
         try
             result := TSignInController.create(
-                routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter(),
+                routeMiddlewares,
                 container.get('signinView') as IView,
                 container.get('viewParams') as IViewParameters
             );

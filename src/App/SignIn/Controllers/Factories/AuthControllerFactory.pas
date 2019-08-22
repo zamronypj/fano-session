@@ -40,8 +40,7 @@ uses
         routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
         try
             result := TAuthController.create(
-                routeMiddlewares.getBefore(),
-                routeMiddlewares.getAfter(),
+                routeMiddlewares,
                 container.get(GuidToString(ISessionManager)) as ISessionManager
             );
         finally
