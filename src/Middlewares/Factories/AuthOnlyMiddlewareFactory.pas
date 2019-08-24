@@ -33,7 +33,7 @@ uses
     begin
         result := TAuthOnlyMiddleware.create(
             container.get(GUIDToString(ISessionManager)) as ISessionManager,
-            'http://fano-session.zamroni/sign-in'
+            'http://fano-session.zamroni/signin'
         );
     end;
 end.

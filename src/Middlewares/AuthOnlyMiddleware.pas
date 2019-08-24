@@ -21,7 +21,7 @@ type
      *
      * @author Zamrony P. Juhara <zamronypj@yahoo.com>
      *-------------------------------------------------*)
-    TAuthOnlyMiddleware = class(TInterfacedObject, IMiddleware, IDependency)
+    TAuthOnlyMiddleware = class(TInjectableObject, IMiddleware)
     private
         fSession : ISessionManager;
         fTargetUrlRedirect : string;
@@ -56,21 +56,20 @@ implementation
           const response : IResponse;
           var canContinue : boolean
     ) : IResponse;
-    //var sess : ISession;
+    var sess : ISession;
     begin
-        result := response;
-        // sess := fSession.beginSession(request, 3600);
-        // canContinue := sess.has('userSignedIn');
-        // if (canContinue) then
-        // begin
-        //     result := response;
-        // end else
-        // begin
-        //     result := TRedirectResponse.create(
-        //         response.headers(),
-        //         fTargetUrlRedirect
-        //     );
-        // end;
+        sess := fSession.beginSession(request, 3600);
+        canContinue := sess.has('userSignedIn');
+        if (canContinue) then
+        begin
+            result := response;
+        end else
+        begin
+            result := TRedirectResponse.create(
+                response.headers(),
+                fTargetUrlRedirect
+            );
+        end;
     end;
 
 end.
