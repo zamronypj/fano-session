@@ -35,17 +35,11 @@ uses
     SignInController;
 
     function TSignInControllerFactory.build(const container : IDependencyContainer) : IDependency;
-    var routeMiddlewares : IMiddlewareCollectionAware;
     begin
-        routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
-        try
-            result := TSignInController.create(
-                routeMiddlewares,
-                container.get('signinView') as IView,
-                container.get('viewParams') as IViewParameters
-            );
-        finally
-            routeMiddlewares := nil;
-        end;
+        result := TSignInController.create(
+            container.get('routeMiddlewares') as IMiddlewareCollectionAware,
+            container.get('signinView') as IView,
+            container.get('viewParams') as IViewParameters
+        );
     end;
 end.

@@ -23,7 +23,7 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TAuthController = class(TRouteHandler, IDependency)
+    TAuthController = class(TRouteHandler)
     private
         fSession : ISessionManager;
     public

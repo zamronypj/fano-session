@@ -56,20 +56,21 @@ implementation
           const response : IResponse;
           var canContinue : boolean
     ) : IResponse;
-    var sess : ISession;
+    //var sess : ISession;
     begin
-        sess := fSession.beginSession(request, 3600);
-        canContinue := sess.has('userSignedIn');
-        if (canContinue) then
-        begin
-            result := response;
-        end else
-        begin
-            result := TRedirectResponse.create(
-                response.headers(),
-                fTargetUrlRedirect
-            );
-        end;
+        result := response;
+        // sess := fSession.beginSession(request, 3600);
+        // canContinue := sess.has('userSignedIn');
+        // if (canContinue) then
+        // begin
+        //     result := response;
+        // end else
+        // begin
+        //     result := TRedirectResponse.create(
+        //         response.headers(),
+        //         fTargetUrlRedirect
+        //     );
+        // end;
     end;
 
 end.

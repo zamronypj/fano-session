@@ -35,16 +35,10 @@ uses
     AuthController;
 
     function TAuthControllerFactory.build(const container : IDependencyContainer) : IDependency;
-    var routeMiddlewares : IMiddlewareCollectionAware;
     begin
-        routeMiddlewares := container.get('routeMiddlewares') as IMiddlewareCollectionAware;
-        try
-            result := TAuthController.create(
-                routeMiddlewares,
-                container.get(GuidToString(ISessionManager)) as ISessionManager
-            );
-        finally
-            routeMiddlewares := nil;
-        end;
+        result := TAuthController.create(
+            container.get('routeMiddlewares') as IMiddlewareCollectionAware,
+            container.get(GuidToString(ISessionManager)) as ISessionManager
+        );
     end;
 end.

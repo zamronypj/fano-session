@@ -14,10 +14,10 @@
    Replace with TMiddlewareCollectionAwareFactory to support middleware
    or replace with your own implementation if required
  ------------------------------------------------}
-container.factory('appMiddlewares', TNullMiddlewareCollectionAwareFactory.create());
+container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
 container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
-container.factory(
+container.add(
     GuidToString(IDispatcher),
     TDispatcherFactory.create(
         container.get('appMiddlewares') as IMiddlewareCollectionAware,
