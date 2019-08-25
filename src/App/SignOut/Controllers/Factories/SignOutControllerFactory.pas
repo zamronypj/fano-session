@@ -41,7 +41,8 @@ uses
     begin
         result := TSignOutController.create(
             container.get('routeMiddlewares') as IMiddlewareCollectionAware,
-            container.get('sessionManager') as ISessionManager
+            container.get('sessionManager') as ISessionManager,
+            'http://fano-session.zamroni/signin'
         );
     end;
 end.

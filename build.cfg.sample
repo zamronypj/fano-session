@@ -55,10 +55,8 @@
 -Fu$USER_APP_DIR$/App/SignIn/Controllers/Factories
 -Fu$USER_APP_DIR$/App/SignIn/Views
 -Fu$USER_APP_DIR$/App/SignIn/Views/Factories
-
-
-#-Fu$USER_APP_DIR$/path/to/other/units
-#-Fu$USER_APP_DIR$/path/to/other/units
+-Fu$USER_APP_DIR$/App/SignOut/Controllers
+-Fu$USER_APP_DIR$/App/SignOut/Controllers/Factories
 
 #----------------------------------------------
 # Application include search path

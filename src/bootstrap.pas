@@ -35,6 +35,7 @@ uses
     SignInControllerFactory,
     SignInViewFactory,
     AuthControllerFactory,
+    SignOutControllerFactory,
     AuthOnlyMiddlewareFactory;
 
 

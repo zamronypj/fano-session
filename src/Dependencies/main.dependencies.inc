@@ -18,17 +18,20 @@ container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
 container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
 container.add(
-    GuidToString(IDispatcher),
-    TDispatcherFactory.create(
-        container.get('appMiddlewares') as IMiddlewareCollectionAware,
-        container.get(GuidToString(IRouteMatcher)) as IRouteMatcher
+    'sessionManager',
+    TJsonFileSessionManagerFactory.create(
+        'fano_sess',
+        'storages/sessions/'
     )
 );
 
 container.add(
-    'sessionManager',
-    TJsonFileSessionManagerFactory.create(
-        'fano_sess',
-        'storages/sessions'
+    GuidToString(IDispatcher),
+    TSessionDispatcherFactory.create(
+        container.get('appMiddlewares') as IMiddlewareCollectionAware,
+        container.get(GuidToString(IRouteMatcher)) as IRouteMatcher,
+        container.get('sessionManager') as ISessionManager,
+        TCookieFactory.create(),
+        3600
     )
 );

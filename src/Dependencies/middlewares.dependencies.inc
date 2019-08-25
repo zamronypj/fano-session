@@ -7,35 +7,7 @@
  *------------------------------------------------------------- *)
 
 {-----------------------------------------------
-  register SessionBeginMiddleware  inside
-  dependency container
-------------------------------------------------}
-container.add(
-    'sessionBeginMiddleware',
-    TSessionBeginMiddlewareFactory.create(
-        container.get('sessionManager') as ISessionManager,
-        3600
-    )
-);
-
-container.add(
-    'sessionEndMiddleware',
-    TSessionEndMiddlewareFactory.create(
-        container.get('sessionManager') as ISessionManager
-    )
-);
-
-{-----------------------------------------------
   register AuthOnlyMiddleware  inside
   dependency container
 ------------------------------------------------}
 container.add('authOnlyMiddleware', TAuthOnlyMiddlewareFactory.create());
-
-{-----------------------------------------------
-  register AuthOnlyMiddleware  inside
-  dependency container
-------------------------------------------------}
-
-container.get('appMiddlewares')
-    .addBefore(container.get('sessionBeginMiddleware') as IMiddleware);
-    .addAfter(container.get('sessionEndMiddleware') as IMiddleware);

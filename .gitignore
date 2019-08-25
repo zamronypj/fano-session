@@ -29,6 +29,11 @@ cgi-bin/app.cgi
 storages/logs/*
 
 #----------------------------------------------
+# Ignore generated session files
+#----------------------------------------------
+storages/sessions/*
+
+#----------------------------------------------
 # Do not ignore README.md
 # This file is provided so Git can create
 # storages/logs directory when this repository

@@ -50,7 +50,7 @@ implementation
     constructor TSignOutController.create(
         const aMiddlewares : IMiddlewareCollectionAware;
         const session : ISessionManager;
-        const targetUrl : string;
+        const targetUrl : string
     );
     begin
         inherited create(aMiddlewares);
