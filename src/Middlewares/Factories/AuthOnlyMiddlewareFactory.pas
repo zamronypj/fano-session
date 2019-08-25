@@ -32,7 +32,7 @@ uses
     function TAuthOnlyMiddlewareFactory.build(const container : IDependencyContainer) : IDependency;
     begin
         result := TAuthOnlyMiddleware.create(
-            container.get(GUIDToString(ISessionManager)) as ISessionManager,
+            container.get('sessionManager') as ISessionManager,
             'http://fano-session.zamroni/signin'
         );
     end;

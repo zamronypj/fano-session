@@ -5,13 +5,14 @@
  * @copyright Copyright (c) [[COPYRIGHT_YEAR]] [[COPYRIGHT_HOLDER]]
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
-unit SignInControllerFactory;
+unit SignOutControllerFactory;
 
 interface
 
 {$MODE OBJFPC}
 
 uses
+
     fano;
 
 type
@@ -21,7 +22,7 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TSignInControllerFactory = class(TFactory, IDependencyFactory)
+    TSignOutControllerFactory = class(TFactory, IDependencyFactory)
     public
         function build(const container : IDependencyContainer) : IDependency; override;
     end;
@@ -34,14 +35,13 @@ uses
     {*! -------------------------------
         unit interfaces
     ----------------------------------- *}
-    SignInController;
+    SignOutController;
 
-    function TSignInControllerFactory.build(const container : IDependencyContainer) : IDependency;
+    function TSignOutControllerFactory.build(const container : IDependencyContainer) : IDependency;
     begin
-        result := TSignInController.create(
+        result := TSignOutController.create(
             container.get('routeMiddlewares') as IMiddlewareCollectionAware,
-            container.get('signinView') as IView,
-            container.get('viewParams') as IViewParameters
+            container.get('sessionManager') as ISessionManager
         );
     end;
 end.

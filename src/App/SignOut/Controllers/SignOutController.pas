@@ -5,7 +5,7 @@
  * @copyright Copyright (c) [[COPYRIGHT_YEAR]] [[COPYRIGHT_HOLDER]]
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
-unit AuthController;
+unit SignOutController;
 
 interface
 
@@ -20,13 +20,13 @@ type
 
     (*!-----------------------------------------------
      * controller that handle route :
-     * POST /signin
+     * /signout
      *
-     * See Routes/SignIn/routes.inc
+     * See Routes/SignOut/routes.inc
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TAuthController = class(TRouteHandler)
+    TSignOutController = class(TRouteHandler)
     private
         fSession : ISessionManager;
         fTargetUrl : string;
@@ -47,7 +47,7 @@ type
 
 implementation
 
-    constructor TAuthController.create(
+    constructor TSignOutController.create(
         const aMiddlewares : IMiddlewareCollectionAware;
         const session : ISessionManager;
         const targetUrl : string;
@@ -58,33 +58,23 @@ implementation
         fTargetUrl := targetUrl;
     end;
 
-    destructor TAuthController.destroy();
+    destructor TSignOutController.destroy();
     begin
         fSession := nil;
         inherited destroy();
     end;
 
-    function TAuthController.handleRequest(
+    function TSignOutController.handleRequest(
           const request : IRequest;
           const response : IResponse
     ) : IResponse;
-    var username, password, targetUrl : string;
+    var
         sess : ISession;
     begin
         sess := fSession.getSession(request);
         try
             sess.delete('userSignedIn');
-            username := request.getParsedBodyParam('username');
-            password := request.getParsedBodyParam('password');
-            if (username = 'hello') and (password = 'world') then
-            begin
-                sess.setVar('userSignedIn', 'true');
-                targetUrl := request.getParsedBodyParam('targetUrl', fTargetUrl);
-                result := TRedirectResponse.create(response.headers(), targetUrl);
-            end else
-            begin
-                response.body().write('Wrong username password combination');
-            end;
+            result := TRedirectResponse.create(response.headers(), fTargetUrl);
         finally
             sess := nil;
         end;

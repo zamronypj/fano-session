@@ -13,3 +13,4 @@
 container.add('homeController', THomeControllerFactory.create());
 container.add('signinController', TSignInControllerFactory.create());
 container.add('authController', TAuthControllerFactory.create());
+container.add('signoutController', TSignOutControllerFactory.create());

@@ -58,7 +58,7 @@ implementation
     ) : IResponse;
     var sess : ISession;
     begin
-        sess := fSession.beginSession(request, 3600);
+        sess := fSession.getSession(request);
         canContinue := sess.has('userSignedIn');
         if (canContinue) then
         begin

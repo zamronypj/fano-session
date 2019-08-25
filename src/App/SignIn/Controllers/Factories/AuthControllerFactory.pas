@@ -9,6 +9,8 @@ unit AuthControllerFactory;
 
 interface
 
+{$MODE OBJFPC}
+
 uses
     fano;
 
@@ -38,7 +40,7 @@ uses
     begin
         result := TAuthController.create(
             container.get('routeMiddlewares') as IMiddlewareCollectionAware,
-            container.get(GuidToString(ISessionManager)) as ISessionManager
+            container.get('sessionManager') as ISessionManager
         );
     end;
 end.

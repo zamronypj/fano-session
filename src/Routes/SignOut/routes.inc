@@ -5,7 +5,5 @@
  * @copyright Copyright (c) [[COPYRIGHT_YEAR]] [[COPYRIGHT_HOLDER]]
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
-{---put your routes registration here---}
-{$INCLUDE Home/routes.inc}
-{$INCLUDE SignIn/routes.inc}
-{$INCLUDE SignOut/routes.inc}
+
+router.get('/signout', container.get('signoutController') as IRouteHandler);

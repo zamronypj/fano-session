@@ -9,6 +9,8 @@ unit SignInController;
 
 interface
 
+{$MODE OBJFPC}
+
 uses
 
     fano;
@@ -23,7 +25,7 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TSignInController = class(TController, IDependency)
+    TSignInController = class(TController)
     end;
 
 implementation

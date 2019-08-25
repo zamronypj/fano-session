@@ -25,11 +25,10 @@ container.add(
     )
 );
 
-container.factory(GuidToString(ISessionManager),
+container.add(
+    'sessionManager',
     TJsonFileSessionManagerFactory.create(
         'fano_sess',
         'storages/sessions'
     )
 );
-
-container.alias('session', GuidToString(ISessionManager));
