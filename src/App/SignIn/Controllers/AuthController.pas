@@ -74,9 +74,9 @@ implementation
         sess := fSession.getSession(request);
         try
             sess.delete('userSignedIn');
-            username := request.getParsedBodyParam('username');
+            username := request.getParsedBodyParam('email');
             password := request.getParsedBodyParam('password');
-            if (username = 'hello') and (password = 'world') then
+            if (username = 'hello@fano') and (password = 'world') then
             begin
                 sess.setVar('userSignedIn', 'true');
                 targetUrl := request.getParsedBodyParam('targetUrl', fTargetUrl);
@@ -84,6 +84,7 @@ implementation
             end else
             begin
                 response.body().write('Wrong username password combination');
+                result := response;
             end;
         finally
             sess := nil;

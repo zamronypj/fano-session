@@ -31,7 +31,7 @@ container.add(
         container.get('appMiddlewares') as IMiddlewareCollectionAware,
         container.get(GuidToString(IRouteMatcher)) as IRouteMatcher,
         container.get('sessionManager') as ISessionManager,
-        TCookieFactory.create(),
+        (TCookieFactory.create()).domain('fano-session.zamroni'),
         3600
     )
 );
