@@ -6,6 +6,17 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
+{-----------------------------------------------
+  register application configuration
+------------------------------------------------}
+container.add(
+    'config',
+    TJsonFileConfigFactory.create(
+        getCurrentDir() + '/config/config.json'
+    )
+);
+config := container.get('config') as IAppConfiguration;
+
  {-----------------------------------------------
    register middleware list for each routes that
    does nothing,
@@ -20,8 +31,8 @@ container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create()
 container.add(
     'sessionManager',
     TJsonFileSessionManagerFactory.create(
-        'fano_sess',
-        'storages/sessions/'
+        config.getString('session.name'),
+        config.getString('session.dir')
     )
 );
 
@@ -32,7 +43,7 @@ container.add(
         container.get(GuidToString(IRouteMatcher)) as IRouteMatcher,
         TRequestResponseFactory.create(),
         container.get('sessionManager') as ISessionManager,
-        (TCookieFactory.create()).domain('fano-session.zamroni'),
-        3600
+        (TCookieFactory.create()).domain(config.getString('cookie.domain')),
+        config.getInt('cookie.maxAge')
     )
 );

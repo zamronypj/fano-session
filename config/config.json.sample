@@ -1,1 +1,16 @@
-{ "appName" : "MyApp" }
+{
+    "appName" : "MyApp",
+
+    "baseUrl" : "http://fano-session.fano",
+
+    "session" : {
+        "name" : "fano_sess",
+        "dir" : "storages/sessions/"
+    },
+
+    "cookie" : {
+        "name" : "fano_sess",
+        "domain" : "fano-session.fano",
+        "maxAge" : 3600
+    }
+}

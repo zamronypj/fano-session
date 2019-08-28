@@ -37,11 +37,15 @@ uses
     AuthController;
 
     function TAuthControllerFactory.build(const container : IDependencyContainer) : IDependency;
+    var config : IAppConfiguration;
+        baseUrl : string;
     begin
+        config := container.get('config') as IAppConfiguration;
+        baseUrl := config.getString('baseUrl');
         result := TAuthController.create(
             container.get('routeMiddlewares') as IMiddlewareCollectionAware,
             container.get('sessionManager') as ISessionManager,
-            'http://fano-session.zamroni/'
+            baseUrl
         );
     end;
 end.

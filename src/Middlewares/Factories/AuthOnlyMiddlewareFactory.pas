@@ -30,10 +30,14 @@ uses
     AuthOnlyMiddleware;
 
     function TAuthOnlyMiddlewareFactory.build(const container : IDependencyContainer) : IDependency;
+    var config : IAppConfiguration;
+        baseUrl : string;
     begin
+        config := container.get('config') as IAppConfiguration;
+        baseUrl := config.getString('baseUrl');
         result := TAuthOnlyMiddleware.create(
             container.get('sessionManager') as ISessionManager,
-            'http://fano-session.zamroni/signin'
+            baseUrl + '/signin'
         );
     end;
 end.

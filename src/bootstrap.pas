@@ -40,6 +40,7 @@ uses
 
 
     procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);
+    var config : IAppConfiguration;
     begin
         {$INCLUDE Dependencies/dependencies.inc}
     end;
