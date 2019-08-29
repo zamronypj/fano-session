@@ -26,13 +26,15 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TAuthController = class(TRouteHandler)
+    TAuthController = class(TController)
     private
         fSession : ISessionManager;
         fTargetUrl : string;
     public
         constructor create(
             const aMiddlewares : IMiddlewareCollectionAware;
+            const viewInst : IView;
+            const viewParamsInst : IViewParameters;
             const session : ISessionManager;
             const targetUrl : string
         );
@@ -49,11 +51,13 @@ implementation
 
     constructor TAuthController.create(
         const aMiddlewares : IMiddlewareCollectionAware;
+        const viewInst : IView;
+        const viewParamsInst : IViewParameters;
         const session : ISessionManager;
         const targetUrl : string
     );
     begin
-        inherited create(aMiddlewares);
+        inherited create(aMiddlewares, viewInst, viewParamsInst);
         fSession := session;
         fTargetUrl := targetUrl;
     end;
@@ -83,8 +87,7 @@ implementation
                 result := TRedirectResponse.create(response.headers(), targetUrl);
             end else
             begin
-                response.body().write('Wrong username password combination');
-                result := response;
+                result := inherited handleRequest(request, response);
             end;
         finally
             sess := nil;

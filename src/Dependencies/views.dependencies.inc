@@ -17,3 +17,4 @@ container.add('viewParams', TViewParametersFactory.create());
 
 container.add('homeView', THomeViewFactory.create());
 container.add('signinView', TSignInViewFactory.create());
+container.add('authView', TAuthViewFactory.create());
