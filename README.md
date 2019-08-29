@@ -21,7 +21,7 @@ If you see something like `Free Pascal Compiler version 3.0.4`,  you are good to
 
 ## Clone this repository
 
-    $ git clone git@github.com:fanofamework/fano-app.git --recursive
+    $ git clone git@github.com:fanofamework/fano-session.git --recursive
 
 `--recursive` is needed so git also pull [Fano](https://github.com/fanoframework/fano) repository.
 
@@ -34,6 +34,22 @@ If you are missing `--recursive` when you clone, you may find that `vendor/fano`
 Run
 
     $ ./tools/config.setup.sh
+
+## Setup directory for sessions
+
+Create directory `storages/sessions`
+
+```
+$ mkdir storages && mkdir storages/sessions
+```
+
+Setup permissions of `storages/sessions` to be writable by user which web server
+run. For example in Debian, Apache is run as `www-data` user.
+
+```
+$ sudo chown your_user_name:www-data storages/sessions
+$ chmod 775 storages/sessions
+```
 
 ## Build application
 
