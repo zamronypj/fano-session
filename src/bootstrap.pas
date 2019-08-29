@@ -15,7 +15,7 @@ uses
 
 type
 
-    TBootstrapApp = class(TSimpleFastCGIWebApplication)
+    TBootstrapApp = class(TSimpleScgiWebApplication)
     protected
         procedure buildDependencies(const container : IDependencyContainer); override;
         procedure buildRoutes(const container : IDependencyContainer); override;
