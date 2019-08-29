@@ -1,6 +1,6 @@
 # Fano Web Framework Skeleton Application
 
-Web application skeleton using Fano Framework, Pascal web application framework
+Example web application skeleton using Fano Framework, Pascal web application framework which demostrate how to use session.
 
 This project is generated using [Fano CLI](https://github.com/fanoframework/fano-cli)
 command line tools to help scaffolding web application using Fano Framework.
@@ -8,7 +8,6 @@ command line tools to help scaffolding web application using Fano Framework.
 ## Requirement
 
 - [Free Pascal](https://www.freepascal.org/) >= 3.0
-- [libcurl development](https://curl.haxx.se/libcurl/)
 - Web Server (Apache, nginx)
 - [Fano Web Framework](https://github.com/fanoframework/fano)
 
