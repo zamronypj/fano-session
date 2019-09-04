@@ -57,7 +57,7 @@ Run
 
     $ ./build.sh
 
-By default, it will output binary executable in `public` directory.
+By default, it will output binary executable in `bin` directory.
 
 To build for different environment, set `BUILD_TYPE` environment variable.
 
