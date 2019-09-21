@@ -39,7 +39,6 @@ uses
     function TSignInControllerFactory.build(const container : IDependencyContainer) : IDependency;
     begin
         result := TSignInController.create(
-            container.get('routeMiddlewares') as IMiddlewareCollectionAware,
             container.get('signinView') as IView,
             container.get('viewParams') as IViewParameters
         );

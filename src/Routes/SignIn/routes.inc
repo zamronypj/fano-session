@@ -6,5 +6,5 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-router.get('/signin', container.get('signinController') as IRouteHandler);
-router.post('/signin', container.get('authController') as IRouteHandler);
+router.get('/signin', container.get('signinController') as IRequestHandler);
+router.post('/signin', container.get('authController') as IRequestHandler);

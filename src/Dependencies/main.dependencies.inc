@@ -26,7 +26,6 @@ config := container.get('config') as IAppConfiguration;
    or replace with your own implementation if required
  ------------------------------------------------}
 container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
-container.factory('routeMiddlewares', TMiddlewareCollectionAwareFactory.create());
 
 container.add(
     'sessionManager',

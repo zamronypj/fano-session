@@ -6,4 +6,4 @@
  * @license   [[LICENSE_URL]] ([[LICENSE]])
  *------------------------------------------------------------- *)
 
-router.get('/signout', container.get('signoutController') as IRouteHandler);
+router.get('/signout', container.get('signoutController') as IRequestHandler);

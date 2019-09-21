@@ -26,13 +26,12 @@ type
      *
      * @author [[AUTHOR_NAME]] <[[AUTHOR_EMAIL]]>
      *------------------------------------------------*)
-    TSignOutController = class(TRouteHandler)
+    TSignOutController = class(TAbstractController)
     private
         fSession : ISessionManager;
         fTargetUrl : string;
     public
         constructor create(
-            const aMiddlewares : IMiddlewareCollectionAware;
             const session : ISessionManager;
             const targetUrl : string
         );
@@ -41,19 +40,18 @@ type
 
         function handleRequest(
             const request : IRequest;
-            const response : IResponse
+            const response : IResponse;
+            const args : IRouteArgsReader
         ) : IResponse; override;
     end;
 
 implementation
 
     constructor TSignOutController.create(
-        const aMiddlewares : IMiddlewareCollectionAware;
         const session : ISessionManager;
         const targetUrl : string
     );
     begin
-        inherited create(aMiddlewares);
         fSession := session;
         fTargetUrl := targetUrl;
     end;
@@ -65,8 +63,9 @@ implementation
     end;
 
     function TSignOutController.handleRequest(
-          const request : IRequest;
-          const response : IResponse
+        const request : IRequest;
+        const response : IResponse;
+        const args : IRouteArgsReader
     ) : IResponse;
     var
         sess : ISession;

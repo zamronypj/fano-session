@@ -43,7 +43,6 @@ uses
         config := container.get('config') as IAppConfiguration;
         baseUrl := config.getString('baseUrl');
         result := TAuthController.create(
-            container.get('routeMiddlewares') as IMiddlewareCollectionAware,
             container.get('authView') as IView,
             container.get('viewParams') as IViewParameters,
             container.get('sessionManager') as ISessionManager,

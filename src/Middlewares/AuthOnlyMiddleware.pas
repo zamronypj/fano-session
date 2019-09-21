@@ -32,6 +32,7 @@ type
         function handleRequest(
             const request : IRequest;
             const response : IResponse;
+            const args : IRouteArgsReader;
             var canContinue : boolean
         ) : IResponse;
     end;
@@ -52,9 +53,10 @@ implementation
     end;
 
     function TAuthOnlyMiddleware.handleRequest(
-          const request : IRequest;
-          const response : IResponse;
-          var canContinue : boolean
+        const request : IRequest;
+        const response : IResponse;
+        const args : IRouteArgsReader;
+        var canContinue : boolean
     ) : IResponse;
     var sess : ISession;
     begin

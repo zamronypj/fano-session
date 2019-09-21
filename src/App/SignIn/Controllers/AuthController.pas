@@ -32,7 +32,6 @@ type
         fTargetUrl : string;
     public
         constructor create(
-            const aMiddlewares : IMiddlewareCollectionAware;
             const viewInst : IView;
             const viewParamsInst : IViewParameters;
             const session : ISessionManager;
@@ -43,21 +42,21 @@ type
 
         function handleRequest(
             const request : IRequest;
-            const response : IResponse
+            const response : IResponse;
+            const args : IRouteArgsReader
         ) : IResponse; override;
     end;
 
 implementation
 
     constructor TAuthController.create(
-        const aMiddlewares : IMiddlewareCollectionAware;
         const viewInst : IView;
         const viewParamsInst : IViewParameters;
         const session : ISessionManager;
         const targetUrl : string
     );
     begin
-        inherited create(aMiddlewares, viewInst, viewParamsInst);
+        inherited create(viewInst, viewParamsInst);
         fSession := session;
         fTargetUrl := targetUrl;
     end;
@@ -69,8 +68,9 @@ implementation
     end;
 
     function TAuthController.handleRequest(
-          const request : IRequest;
-          const response : IResponse
+        const request : IRequest;
+        const response : IResponse;
+        const args : IRouteArgsReader
     ) : IResponse;
     var username, password, targetUrl : string;
         sess : ISession;
@@ -87,7 +87,7 @@ implementation
                 result := TRedirectResponse.create(response.headers(), targetUrl);
             end else
             begin
-                result := inherited handleRequest(request, response);
+                result := inherited handleRequest(request, response, args);
             end;
         finally
             sess := nil;

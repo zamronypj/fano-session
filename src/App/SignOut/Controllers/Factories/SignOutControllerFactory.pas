@@ -44,7 +44,6 @@ uses
         config := container.get('config') as IAppConfiguration;
         baseUrl := config.getString('baseUrl');
         result := TSignOutController.create(
-            container.get('routeMiddlewares') as IMiddlewareCollectionAware,
             container.get('sessionManager') as ISessionManager,
             baseUrl + '/signin'
         );
