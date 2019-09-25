@@ -33,7 +33,7 @@ type
             const request : IRequest;
             const response : IResponse;
             const args : IRouteArgsReader;
-            var canContinue : boolean
+            const next : IRequestHandler
         ) : IResponse;
     end;
 
@@ -56,15 +56,14 @@ implementation
         const request : IRequest;
         const response : IResponse;
         const args : IRouteArgsReader;
-        var canContinue : boolean
+        const next : IRequestHandler
     ) : IResponse;
     var sess : ISession;
     begin
         sess := fSession.getSession(request);
-        canContinue := sess.has('userSignedIn');
-        if (canContinue) then
+        if (sess.has('userSignedIn')) then
         begin
-            result := response;
+            result := next.handleRequest(request, response, args);
         end else
         begin
             result := TRedirectResponse.create(

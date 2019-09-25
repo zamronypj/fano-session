@@ -9,4 +9,4 @@
 router.get(
     '/',
     container.get('homeController') as IRequestHandler
-).before(container.get('authOnlyMiddleware') as IMiddleware);
+).add(container.get('authOnlyMiddleware') as IMiddleware);

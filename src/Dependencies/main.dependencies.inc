@@ -25,7 +25,7 @@ config := container.get('config') as IAppConfiguration;
    Replace with TMiddlewareCollectionAwareFactory to support middleware
    or replace with your own implementation if required
  ------------------------------------------------}
-container.add('appMiddlewares', TMiddlewareCollectionAwareFactory.create());
+container.add('appMiddlewares', TMiddlewareListFactory.create());
 
 container.add(
     'sessionManager',
@@ -38,7 +38,7 @@ container.add(
 container.add(
     GuidToString(IDispatcher),
     TSessionDispatcherFactory.create(
-        container.get('appMiddlewares') as IMiddlewareCollectionAware,
+        container.get('appMiddlewares') as IMiddlewareLinkList,
         container.get(GuidToString(IRouteMatcher)) as IRouteMatcher,
         TRequestResponseFactory.create(),
         container.get('sessionManager') as ISessionManager,
