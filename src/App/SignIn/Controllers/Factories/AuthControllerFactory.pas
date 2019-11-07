@@ -45,7 +45,7 @@ uses
         result := TAuthController.create(
             container.get('authView') as IView,
             container.get('viewParams') as IViewParameters,
-            container.get('sessionManager') as ISessionManager,
+            container.get('sessionManager') as IReadOnlySessionManager,
             baseUrl
         );
     end;

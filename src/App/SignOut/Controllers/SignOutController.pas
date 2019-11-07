@@ -28,11 +28,11 @@ type
      *------------------------------------------------*)
     TSignOutController = class(TAbstractController)
     private
-        fSession : ISessionManager;
+        fSession : IReadOnlySessionManager;
         fTargetUrl : string;
     public
         constructor create(
-            const session : ISessionManager;
+            const session : IReadOnlySessionManager;
             const targetUrl : string
         );
 
@@ -48,7 +48,7 @@ type
 implementation
 
     constructor TSignOutController.create(
-        const session : ISessionManager;
+        const session : IReadOnlySessionManager;
         const targetUrl : string
     );
     begin

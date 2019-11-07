@@ -28,13 +28,13 @@ type
      *------------------------------------------------*)
     TAuthController = class(TController)
     private
-        fSession : ISessionManager;
+        fSession : IReadOnlySessionManager;
         fTargetUrl : string;
     public
         constructor create(
             const viewInst : IView;
             const viewParamsInst : IViewParameters;
-            const session : ISessionManager;
+            const session : IReadOnlySessionManager;
             const targetUrl : string
         );
 
@@ -52,7 +52,7 @@ implementation
     constructor TAuthController.create(
         const viewInst : IView;
         const viewParamsInst : IViewParameters;
-        const session : ISessionManager;
+        const session : IReadOnlySessionManager;
         const targetUrl : string
     );
     begin
