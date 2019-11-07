@@ -23,10 +23,10 @@ type
      *-------------------------------------------------*)
     TAuthOnlyMiddleware = class(TInjectableObject, IMiddleware)
     private
-        fSession : ISessionManager;
+        fSession : IReadOnlySessionManager;
         fTargetUrlRedirect : string;
     public
-        constructor create(const session : ISessionManager; const redirectUrl : string);
+        constructor create(const session : IReadOnlySessionManager; const redirectUrl : string);
         destructor destroy(); override;
 
         function handleRequest(
@@ -39,7 +39,7 @@ type
 
 implementation
 
-    constructor TAuthOnlyMiddleware.create(const session : ISessionManager; const redirectUrl : string);
+    constructor TAuthOnlyMiddleware.create(const session : IReadOnlySessionManager; const redirectUrl : string);
     begin
         inherited create();
         fSession := session;
@@ -60,7 +60,7 @@ implementation
     ) : IResponse;
     var sess : ISession;
     begin
-        sess := fSession.getSession(request);
+        sess := fSession[request];
         if (sess.has('userSignedIn')) then
         begin
             result := next.handleRequest(request, response, args);

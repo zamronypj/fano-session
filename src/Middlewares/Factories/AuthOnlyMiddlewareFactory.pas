@@ -36,7 +36,7 @@ uses
         config := container.get('config') as IAppConfiguration;
         baseUrl := config.getString('baseUrl');
         result := TAuthOnlyMiddleware.create(
-            container.get('sessionManager') as ISessionManager,
+            container.get('sessionManager') as IReadOnlySessionManager,
             baseUrl + '/signin'
         );
     end;
