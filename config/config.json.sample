@@ -3,6 +3,8 @@
 
     "baseUrl" : "http://fano-session.fano",
 
+    "secretKey" : "hush hush secret key you should replace for example with fanocli --key",
+
     "session" : {
         "name" : "fano_sess",
         "dir" : "storages/sessions/"
