@@ -29,11 +29,9 @@ container.add('appMiddlewares', TMiddlewareListFactory.create());
 
 container.add(
     'sessionManager',
-    (TJsonFileSessionManagerFactory.create(
+    TJsonFileSessionManagerFactory.create(
         config.getString('session.name'),
         config.getString('session.dir')
-    )).sessionIdGenerator(
-        TKeyGuidSessionIdGeneratorFactory.create(config.getString('secretKey'))
     )
 );
 
