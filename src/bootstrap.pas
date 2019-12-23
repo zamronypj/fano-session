@@ -15,10 +15,17 @@ uses
 
 type
 
-    TBootstrapApp = class(TSimpleScgiWebApplication)
-    protected
-        procedure buildDependencies(const container : IDependencyContainer); override;
-        procedure buildRoutes(const container : IDependencyContainer); override;
+    TAppServiceProvider = class(TDaemonAppServiceProvider)
+    public
+        procedure register(const container : IDependencyContainer); override;
+    end;
+
+    TAppRoutes = class(TRouteBuilder)
+    public
+        procedure buildRoutes(
+            const container : IDependencyContainer;
+            const router : IRouter
+        ); override;
     end;
 
 implementation
@@ -40,21 +47,18 @@ uses
     AuthOnlyMiddlewareFactory;
 
 
-    procedure TBootstrapApp.buildDependencies(const container : IDependencyContainer);
+    procedure TAppServiceProvider.register(const container : IDependencyContainer);
     var config : IAppConfiguration;
     begin
         {$INCLUDE Dependencies/dependencies.inc}
     end;
 
-    procedure TBootstrapApp.buildRoutes(const container : IDependencyContainer);
-    var router : IRouter;
+    procedure TAppRoutes.buildRoutes(
+        const container : IDependencyContainer;
+        const router : IRouter
+    );
     begin
-        router := container.get(GUIDToString(IRouter)) as IRouter;
-        try
-            {$INCLUDE Routes/routes.inc}
-        finally
-            router := nil;
-        end;
+        {$INCLUDE Routes/routes.inc}
     end;
 
 end.
