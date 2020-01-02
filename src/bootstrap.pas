@@ -17,9 +17,17 @@ type
 
     TAppServiceProvider = class(TDaemonAppServiceProvider)
     protected
+        function buildAppConfig(const ctnr : IDependencyContainer) : IAppConfiguration; override;
+
+        function buildErrorHandler(
+            const ctnr : IDependencyContainer;
+            const config : IAppConfiguration
+        ) : IErrorHandler; override;
+
         function buildDispatcher(
             const ctnr : IDependencyContainer;
-            const routeMatcher : IRouteMatcher
+            const routeMatcher : IRouteMatcher;
+            const config : IAppConfiguration
         ) : IDispatcher; override;
     public
         procedure register(const container : IDependencyContainer); override;
@@ -51,12 +59,7 @@ uses
     SignOutControllerFactory,
     AuthOnlyMiddlewareFactory;
 
-
-    function TAppServiceProvider.buildDispatcher(
-        const ctnr : IDependencyContainer;
-        const routeMatcher : IRouteMatcher
-    ) : IDispatcher;
-    var config : IAppConfiguration;
+    function TAppServiceProvider.buildAppConfig(const ctnr : IDependencyContainer) : IAppConfiguration;
     begin
         ctnr.add(
             'config',
@@ -64,7 +67,26 @@ uses
                 getCurrentDir() + '/config/config.json'
             )
         );
-        config := ctnr.get('config') as IAppConfiguration;
+        result := ctnr.get('config') as IAppConfiguration;
+    end;
+
+    function TAppServiceProvider.buildErrorHandler(
+        const ctnr : IDependencyContainer;
+        const config : IAppConfiguration
+    ) : IErrorHandler;
+    begin
+        result := TProdOrDevErrorHandlerFactory.create(
+            getCurrentDir() + '/resources/Templates/Error/500.html',
+            config.getBool('isProduction')
+        ).build(ctnr) as IErrorHandler;
+    end;
+
+    function TAppServiceProvider.buildDispatcher(
+        const ctnr : IDependencyContainer;
+        const routeMatcher : IRouteMatcher;
+        const config : IAppConfiguration
+    ) : IDispatcher;
+    begin
         ctnr.add('appMiddlewares', TMiddlewareListFactory.create());
 
         ctnr.add(
