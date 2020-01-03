@@ -74,11 +74,16 @@ uses
         const ctnr : IDependencyContainer;
         const config : IAppConfiguration
     ) : IErrorHandler;
+    var factory : IDependencyFactory;
+        basedir : string;
     begin
-        result := TProdOrDevErrorHandlerFactory.create(
-            getCurrentDir() + '/resources/Templates/Error/500.html',
+        baseDir := getCurrentDir() + '/resources/Templates/Error/';
+        factory := TProdOrDevErrorHandlerFactory.create(
+            baseDir + '404.html',
+            baseDir + '500.html',
             config.getBool('isProduction')
-        ).build(ctnr) as IErrorHandler;
+        );
+        result := factory.build(ctnr) as IErrorHandler;
     end;
 
     function TAppServiceProvider.buildDispatcher(
