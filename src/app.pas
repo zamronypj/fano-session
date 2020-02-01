@@ -27,7 +27,7 @@ begin
         TScgiAppServiceProvider.create(
             TServerAppServiceProvider.create(
                 TAppServiceProvider.create(),
-                TInetSocketSvr.create('127.0.0.1', 4000)
+                (TInetSvrFactory.create('127.0.0.1', 4000) as ISocketSvrFactory).build()
             )
         ),
         TAppRoutes.create()
