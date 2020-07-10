@@ -99,6 +99,10 @@ uses
             TJsonFileSessionManagerFactory.create(
                 config.getString('session.name'),
                 config.getString('session.dir')
+            ).sessionIdGenerator(
+                TSha2KeyRandSessionIdGeneratorFactory.create(
+                    config.getString('secretKey')
+                )
             )
         );
 
